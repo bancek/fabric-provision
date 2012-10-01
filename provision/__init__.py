@@ -59,7 +59,7 @@ chef = ChefDict(DEFAULTS)
 
 def apt():
     sudo('apt-get update')
-    sudo('apt-get -y upgrade')
+    sudo('sudo DEBIAN_FRONTEND=noninteractive apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" dist-upgrade')
     sudo('apt-get install -y ruby ruby-dev wget %s' % ' '.join(CHEF_DEPENDENCIES.split('\n')))
 
 def gems():
